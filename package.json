@@ -19,7 +19,8 @@
   "homepage": "https://github.com/kealanheena/todo_tdd#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.9.19"
+    "mongoose": "^5.9.19",
+    "node-mocks-http": "^1.8.1"
   },
   "devDependencies": {
     "jest": "^26.0.1"
