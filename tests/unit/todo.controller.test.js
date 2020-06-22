@@ -19,7 +19,8 @@ describe("TodoController", () => {
 
     beforeEach(() => {
       req.body = newTodo;
-    })
+    });
+
     it("should have a createTodo function", () => {
       expect(typeof TodoController.createTodo).toBe("function");
     });
@@ -32,7 +33,7 @@ describe("TodoController", () => {
     it("should return a 201 response code", () => {
       TodoController.createTodo(req, res, next);
       expect(res.statusCode).toBe(201);
-      expect(res._isEndCalled()).toBeTruthy;
+      expect(res._isEndCalled()).toBeTruthy();
     });
 
     it("should return json body in response", () => {
