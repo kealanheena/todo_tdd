@@ -12,7 +12,7 @@ describe("TodoController", () => {
   beforeEach(() => {
     req = httpMocks.createRequest();
     res = httpMocks.createResponse();
-    next = null;
+    next = jest.fn();
   })
 
   describe("#createTodo", () => {
@@ -27,11 +27,13 @@ describe("TodoController", () => {
 
     it("should call TodoModel.create", () => {
       TodoController.createTodo(req, res, next);
+      
       expect(TodoModel.create).toBeCalledWith(newTodo);
     });
 
     it("should return a 201 response code", async () => {
       await TodoController.createTodo(req, res, next);
+
       expect(res.statusCode).toBe(201);
       expect(res._isEndCalled()).toBeTruthy();
     });
@@ -39,7 +41,17 @@ describe("TodoController", () => {
     it("should return json body in response", async () => {
       TodoModel.create.mockReturnValue(newTodo);
       await TodoController.createTodo(req, res, next);
+
       expect(res._getJSONData()).toStrictEqual(newTodo);
+    });
+
+    it("should handle errors", async () => {
+      const errorMessage = { message: "Done proprerty missing"}
+      const rejectedPromise = Promise.reject(errorMessage);
+      TodoModel.create.mockReturnValue(rejectedPromise);
+      await TodoController.createTodo(req, res, next);
+
+      expect(next).toBeCalledWith(errorMessage);
     });
   });
 });
