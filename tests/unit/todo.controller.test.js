@@ -13,7 +13,13 @@ describe("TodoController", () => {
     req = httpMocks.createRequest();
     res = httpMocks.createResponse();
     next = jest.fn();
-  })
+  });
+
+  describe("#getTodos", () => {
+    it("should have a getTodos function", () => {
+      expect(typeof TodoController.getTodos).toBe("function");
+    });
+  });
 
   describe("#createTodo", () => {
 
