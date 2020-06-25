@@ -20,7 +20,7 @@ exports.getTodos = async (req, res, next) => {
 
 exports.getTodoById = async (req, res, next) => {
   try {
-    const singleTodo = await TodoModel.findById(req.params.todoId);
+    const singleTodo = await TodoModel.findById(req.params.id);
     if(singleTodo) {
       res.status(200).json(singleTodo);
     } else {

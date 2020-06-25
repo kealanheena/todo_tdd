@@ -24,7 +24,7 @@ describe("TodoController", () => {
     });
 
     it("should call TodoModel.findById with route parameters", async () => {
-      req.params.todoId = "5ef12ccfa293162e4204ce88";
+      req.params.id = "5ef12ccfa293162e4204ce88";
       await TodoController.getTodoById(req, res, next);
 
       expect(TodoModel.findById).toBeCalledWith("5ef12ccfa293162e4204ce88");
