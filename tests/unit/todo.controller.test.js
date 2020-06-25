@@ -40,12 +40,20 @@ describe("TodoController", () => {
     });
 
     it("should handle errors", async () => {
-      const errorMessage = { message: "Error finding" };
+      const errorMessage = { message: "Error finding todo" };
       const rejectedPromise = Promise.reject(errorMessage);
       TodoModel.findById.mockReturnValue(rejectedPromise);
       await TodoController.getTodoById(req, res, next);
 
       expect(next).toHaveBeenCalledWith(errorMessage);
+    });
+
+    it("should return status code 404 when item doesn't exist", async () => {
+      TodoModel.findById.mockReturnValue(null);
+      await TodoController.getTodoById(req, res, next);
+
+      expect(res.statusCode).toBe(404);
+      expect(res._isEndCalled()).toBeTruthy();
     });
   });
 
