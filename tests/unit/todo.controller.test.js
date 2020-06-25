@@ -17,27 +17,6 @@ describe("TodoController", () => {
     next = jest.fn();
   });
 
-  describe("#getTodos", () => {
-    it("should have a getTodos function", () => {
-      expect(typeof TodoController.getTodos).toBe("function");
-    });
-
-    it("should call TodoModel.find({})", async () => {
-      await TodoController.getTodos(req, res, next);
-
-      expect(TodoModel.find).toHaveBeenCalledWith({});
-    });
-
-    it("should return response code with status 200 and all todos", async () => {
-      TodoModel.find.mockReturnValue(allTodos)
-      await TodoController.getTodos(req, res, next);
-
-      expect(res.statusCode).toBe(200);
-      expect(res._isEndCalled()).toBeTruthy();
-      expect(res._getJSONData()).toStrictEqual(allTodos);
-    });
-  });
-
   describe("#createTodo", () => {
 
     beforeEach(() => {
@@ -77,4 +56,35 @@ describe("TodoController", () => {
       expect(next).toBeCalledWith(errorMessage);
     });
   });
+
+  describe("#getTodos", () => {
+    it("should have a getTodos function", () => {
+      expect(typeof TodoController.getTodos).toBe("function");
+    });
+
+    it("should call TodoModel.find({})", async () => {
+      await TodoController.getTodos(req, res, next);
+
+      expect(TodoModel.find).toHaveBeenCalledWith({});
+    });
+
+    it("should return response code with status 200 and all todos", async () => {
+      TodoModel.find.mockReturnValue(allTodos)
+      await TodoController.getTodos(req, res, next);
+
+      expect(res.statusCode).toBe(200);
+      expect(res._isEndCalled()).toBeTruthy();
+      expect(res._getJSONData()).toStrictEqual(allTodos);
+    });
+
+    it("should handle errors", async () => {
+      const errorMessage = { message: "Error finding" }
+      const rejectedPromise = Promise.reject(errorMessage);
+      TodoModel.find.mockReturnValue(rejectedPromise);
+      await TodoController.getTodos(req, res, next);
+
+      expect(next).toHaveBeenCalledWith(errorMessage)
+    });
+  });
+
 });
