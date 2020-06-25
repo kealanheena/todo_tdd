@@ -30,6 +30,14 @@ describe(endpointUrl, () => {
       expect(response.body.title).toBe(firstTodo.title);
       expect(response.body.done).toBe(firstTodo.done);
     });
+
+    it("todo doesn't exist", async () => {
+      const response = await request(app).get(
+        `${endpointUrl}5ef12ccfa293162e1111ce88`
+      );
+
+      expect(response.statusCode).toBe(404);
+    });
   });
 
   describe('POST Intergration Tests', () => {
