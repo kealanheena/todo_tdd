@@ -38,6 +38,15 @@ describe("TodoController", () => {
       expect(res._isEndCalled()).toBeTruthy();
       expect(res._getJSONData()).toStrictEqual(newTodo);
     });
+
+    it("should handle errors", async () => {
+      const errorMessage = { message: "Error finding" };
+      const rejectedPromise = Promise.reject(errorMessage);
+      TodoModel.findById.mockReturnValue(rejectedPromise);
+      await TodoController.getTodoById(req, res, next);
+
+      expect(next).toHaveBeenCalledWith(errorMessage);
+    });
   });
 
   describe("#getTodos", () => {
@@ -61,7 +70,7 @@ describe("TodoController", () => {
     });
 
     it("should handle errors", async () => {
-      const errorMessage = { message: "Error finding" }
+      const errorMessage = { message: "Error finding" };
       const rejectedPromise = Promise.reject(errorMessage);
       TodoModel.find.mockReturnValue(rejectedPromise);
       await TodoController.getTodos(req, res, next);
