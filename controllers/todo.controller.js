@@ -27,14 +27,18 @@ exports.getTodoById = async (req, res, next) => {
       res.status(404).send();
     }
   } catch(err) {
-    next(err)
+    next(err);
   }
 };
 
 exports.updateTodo = async (req, res, next) => {
-  const updatedTodo = await TodoModel.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    useFindAndModify: false
-  });
-  res.status(200).json(updatedTodo);
+  try {
+    const updatedTodo = await TodoModel.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      useFindAndModify: false
+    });
+    res.status(200).json(updatedTodo);
+  } catch(err) {
+    next(err);
+  }
 };
