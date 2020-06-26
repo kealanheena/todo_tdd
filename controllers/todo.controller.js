@@ -30,3 +30,7 @@ exports.getTodoById = async (req, res, next) => {
     next(err)
   }
 };
+
+exports.updateTodo = async (req, res, next) => {
+
+};
