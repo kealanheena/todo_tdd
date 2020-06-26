@@ -32,5 +32,8 @@ exports.getTodoById = async (req, res, next) => {
 };
 
 exports.updateTodo = async (req, res, next) => {
-
+  TodoModel.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    useFindAndModify: false
+  })
 };
