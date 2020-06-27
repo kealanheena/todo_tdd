@@ -27,6 +27,14 @@ describe("TodoController", () => {
 
       expect(TodoModel.findByIdAndDelete).toHaveBeenCalledWith(todoId);
     });
+
+    it("should return a 200 response code", async () => {
+      req.params.id = todoId;
+      await TodoController.deleteTodo(req, res, next);
+      
+      expect(res.statusCode).toBe(200);
+      expect(res._isEndCalled()).toBeTruthy();
+    });
   });
 
   describe("#updateTodo", () => {
