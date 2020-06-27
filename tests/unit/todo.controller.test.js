@@ -29,13 +29,21 @@ describe("TodoController", () => {
     });
 
     it("should return a 200 response code and deleted todomodel", async () => {
-      req.params.id = todoId;
-      req.body = newTodo;
+      TodoModel.findByIdAndDelete.mockReturnValue(newTodo);
       await TodoController.deleteTodo(req, res, next);
       
       expect(res.statusCode).toBe(200);
       expect(res._getJSONData()).toStrictEqual(newTodo);
       expect(res._isEndCalled()).toBeTruthy();
+    });
+
+    it("should handle errors", async () => {
+      const errorMessage = { message: "Error" };
+      const rejectedPromise = Promise.reject(errorMessage);
+      TodoModel.findByIdAndDelete.mockReturnValue(rejectedPromise);
+      await TodoController.deleteTodo(req, res, next);
+
+      expect(next).toHaveBeenCalledWith(errorMessage);
     });
   });
 
