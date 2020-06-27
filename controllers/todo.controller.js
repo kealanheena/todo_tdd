@@ -42,8 +42,11 @@ exports.updateTodo = async (req, res, next) => {
     } else {
       res.status(404).send();
     }
-    
   } catch(err) {
     next(err);
   }
 };
+
+exports.deleteTodo = async (req, res, next) => {
+  
+}

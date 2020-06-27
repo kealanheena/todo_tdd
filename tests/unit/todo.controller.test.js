@@ -19,6 +19,12 @@ describe("TodoController", () => {
     next = jest.fn();
   });
 
+  describe("#deleteTodo", () => {
+    it("should have a deleteTodo function", () => {
+      expect(typeof TodoController.deleteTodo).toBe("function");
+    });
+  });
+
   describe("#updateTodo", () => {
     it("should have a updateTodo function", () => {
       expect(typeof TodoController.updateTodo).toBe("function");
