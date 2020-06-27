@@ -4,6 +4,8 @@ const newTodo = require("../mock-data/new-todo.json");
 const { response } = require("../../app");
 
 const endpointUrl = "/todos/";
+const testData = { title: "Make intergration test for put", done: true };
+const nonExistingTodoId = "5ef12ccfa293162e1111ce88"
 
 let firstTodo, newTodoId;
 
@@ -34,7 +36,7 @@ describe(endpointUrl, () => {
 
     it("todo doesn't exist", async () => {
       const response = await request(app).get(
-        `${endpointUrl}5ef12ccfa293162e1111ce88`
+        `${endpointUrl}${nonExistingTodoId}`
       );
 
       expect(response.statusCode).toBe(404);
@@ -65,12 +67,31 @@ describe(endpointUrl, () => {
       });
     });
   }); 
+
   describe('PUT Intergration Tests', () => {
     it(`PUT ${endpointUrl}`, async () => {
-      testData = { title: "Make intergration test for put", done: true }
       const res = await request(app)
         .put(endpointUrl + newTodoId)
         .send(testData);
+
+      expect(res.statusCode).toBe(200);
+      expect(res.body.title).toBe(testData.title);
+      expect(res.body.done).toBe(testData.done);
+    });
+
+    it(`should return 404 on PUT ${endpointUrl}`, async () => {
+      const res = await request(app)
+        .put(endpointUrl + nonExistingTodoId)
+        .send(testData);
+      expect(res.statusCode).toBe(404);
+    });
+  });
+  
+  describe("DELETE Intergration Tests", () => {
+    it(`DELETE ${endpointUrl}`, async () => {
+      const res = await request(app)
+        .delete(endpointUrl + newTodoId)
+        .send();
 
       expect(res.statusCode).toBe(200);
       expect(res.body.title).toBe(testData.title);
