@@ -45,6 +45,14 @@ describe("TodoController", () => {
 
       expect(next).toHaveBeenCalledWith(errorMessage);
     });
+
+    it("should return status code 404 when item doesn't exist", async () => {
+      TodoModel.findByIdAndDelete.mockReturnValue(null);
+      await TodoController.deleteTodo(req, res, next);
+
+      expect(res.statusCode).toBe(404);
+      expect(res._isEndCalled()).toBeTruthy();
+    });
   });
 
   describe("#updateTodo", () => {
