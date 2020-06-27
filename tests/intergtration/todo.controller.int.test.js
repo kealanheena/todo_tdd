@@ -83,6 +83,7 @@ describe(endpointUrl, () => {
       const res = await request(app)
         .put(endpointUrl + nonExistingTodoId)
         .send(testData);
+
       expect(res.statusCode).toBe(404);
     });
   });
@@ -91,11 +92,19 @@ describe(endpointUrl, () => {
     it(`DELETE ${endpointUrl}`, async () => {
       const res = await request(app)
         .delete(endpointUrl + newTodoId)
-        .send();
+        .send(testData);
 
       expect(res.statusCode).toBe(200);
       expect(res.body.title).toBe(testData.title);
       expect(res.body.done).toBe(testData.done);
+    });
+
+    it(`should return 404 on PUT ${endpointUrl}`, async () => {
+      const res = await request(app)
+        .delete(endpointUrl + nonExistingTodoId)
+        .send();
+
+      expect(res.statusCode).toBe(404);
     });
   });
 })
