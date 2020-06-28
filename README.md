@@ -5,7 +5,21 @@ This is a Todo API to help me practice TDD using Jest.
 ## User Stories
 
 ```
+As a User,
+So I can remember what I have to do,
+I would like to Create a todo.
 
+As a User,
+So I can see the things I need todo I would like to get the todos,
+I would like to be able to Read a todo.
+
+As a User,
+So I can check off my todos,
+I would like the option to Update a todo.
+
+As a User,
+So I can take permently complete a todo,
+I would like the option to delete a todo.
 ```
 
 ## Tech Used
@@ -38,15 +52,7 @@ $ cd todo_tdd
 
 #### To Start
 
-You'll need to run the backend and front end with
 
-```
-npm start
-```
-
-You'll also need to run mongo
-
-After that you can create, view, update and delete messages
 
 ## Running the tests
 
@@ -58,5 +64,6 @@ $ npm test
 
 ## Tests 
 
-### Back-End Test
+## Unit Tests
 
+## Intergration Tests
