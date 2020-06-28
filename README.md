@@ -72,5 +72,19 @@ $ npm test
   - should return a 200 response code and deleted todomodel
   - should handle errors
   - should return status code 404 when item doesn't exist
+- #updateTodo
+  - should have a updateTodo function
+  - should update with TodoModel.findByIdAndUpdate
+  - should return a response with json data and http code 200
+  - should handle errors
+  - should return status code 404 when item doesn't exist
+- #getTodoById
+  - should have a getTodoById function
+  - should call TodoModel.findById with route parameters
+  - should return json body and response code 200
+  - should handle errors
+  - should return status code 404 when item doesn't exist
+
+
 
 ## Intergration Tests
