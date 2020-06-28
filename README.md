@@ -84,7 +84,17 @@ $ npm test
   - should return json body and response code 200
   - should handle errors
   - should return status code 404 when item doesn't exist
-
+- #getTodos
+  - should have a getTodos function
+  - should call TodoModel.find({})
+  - should return response code with status 200 and all todos
+  - should handle errors
+- #createTodo
+  - should have a createTodo function
+  - should call TodoModel.create
+  - should return a 201 response code
+  - should return json body in response
+  - should handle errors
 
 
 ## Intergration Tests
