@@ -98,3 +98,18 @@ $ npm test
 
 
 ## Intergration Tests
+
+- GET Intergration Tests
+  - GET /todos/
+- GET by ID Intergration Tests
+  - GET by ID /todos/
+  - todo doesn't exist
+- POST Intergration Tests
+  - POST /todos/
+  - should return error 500 on malformed data with post /todos/
+- PUT Intergration Tests
+  - PUT /todos/
+  - should return 404 on PUT /todos/
+- DELETE Intergration Tests
+  - DELETE /todos/
+  - should return 404 on PUT /todos/
