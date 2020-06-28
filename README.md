@@ -66,4 +66,11 @@ $ npm test
 
 ## Unit Tests
 
+- #deleteTodo
+  - should have a deleteTodo function
+  - should delete with TodoModel.findByIdAndUpdate
+  - should return a 200 response code and deleted todomodel
+  - should handle errors
+  - should return status code 404 when item doesn't exist
+
 ## Intergration Tests
