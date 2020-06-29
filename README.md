@@ -58,10 +58,23 @@ Run
 node server
 ```
 
-you canthen use Postman to make api calls:
+you can then use Postman to make api calls:
 
 ```
+GET
+GET: http://localhost:3000/todos/
 
+GET BY ID
+GET: http://localhost:3000/todos/:id
+
+POST
+POST: http://localhost:3000/todos/:id
+
+PUT
+PUT: http://localhost:3000/todos/:id
+
+DELETE
+DELETE: http://localhost:3000/todos/:id
 ```
 
 ## Running the tests
