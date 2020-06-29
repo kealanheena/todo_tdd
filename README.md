@@ -43,7 +43,7 @@ You'll be able to:
 ### Local Setup
 
 ```sh
-$ git clone 
+$ git clone https://github.com/kealanheena/todo_tdd
 ```
 
 ```sh
@@ -52,7 +52,17 @@ $ cd todo_tdd
 
 #### To Start
 
+Run
 
+```
+node server
+```
+
+you canthen use Postman to make api calls:
+
+```
+
+```
 
 ## Running the tests
 
