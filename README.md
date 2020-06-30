@@ -87,7 +87,7 @@ $ npm test
 
 ## Tests 
 
-## Unit Tests
+### Unit Tests
 
 - #deleteTodo
   - should have a deleteTodo function
@@ -120,7 +120,7 @@ $ npm test
   - should handle errors
 
 
-## Intergration Tests
+### Intergration Tests
 
 - GET Intergration Tests
   - GET /todos/
