@@ -43,7 +43,7 @@ You'll be able to:
 ### Local Setup
 
 ```sh
-$ git clone 
+$ git clone https://github.com/kealanheena/todo_tdd
 ```
 
 ```sh
@@ -52,7 +52,30 @@ $ cd todo_tdd
 
 #### To Start
 
+Run
 
+```
+node server
+```
+
+you can then use Postman to make api calls:
+
+```
+GET
+GET: http://localhost:3000/todos/
+
+GET BY ID
+GET: http://localhost:3000/todos/:id
+
+POST
+POST: http://localhost:3000/todos/:id
+
+PUT
+PUT: http://localhost:3000/todos/:id
+
+DELETE
+DELETE: http://localhost:3000/todos/:id
+```
 
 ## Running the tests
 
@@ -64,7 +87,7 @@ $ npm test
 
 ## Tests 
 
-## Unit Tests
+### Unit Tests
 
 - #deleteTodo
   - should have a deleteTodo function
@@ -97,7 +120,7 @@ $ npm test
   - should handle errors
 
 
-## Intergration Tests
+### Intergration Tests
 
 - GET Intergration Tests
   - GET /todos/
