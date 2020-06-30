@@ -11,6 +11,31 @@ let firstTodo, newTodoId;
 
 describe(endpointUrl, () => {
 
+  describe('POST Intergration Tests', () => {
+    it(`POST ${endpointUrl}`, async () => {
+      const response = await request(app)
+        .post(endpointUrl)
+        .send(newTodo);
+  
+      expect(response.statusCode).toBe(201);
+      expect(response.body.title).toBe(newTodo.title);
+      expect(response.body.done).toBe(newTodo.done);
+      newTodoId = response.body._id;
+    });
+  
+    it(`should return error 500 on malformed data with post ${endpointUrl}`, async () => {
+      const response = await request(app)
+        .post(endpointUrl)
+        .send({ title: "Missing done property" });
+  
+      expect(response.statusCode).toBe(500);
+      expect(response.body).toStrictEqual({
+        message: 
+          "Todo validation failed: done: Path `done` is required."
+      });
+    });
+  }); 
+
   describe('GET Intergration Tests', () => {
     it(`GET ${endpointUrl}`, async () => {
       const response = await request(app)
@@ -42,31 +67,6 @@ describe(endpointUrl, () => {
       expect(response.statusCode).toBe(404);
     });
   });
-
-  describe('POST Intergration Tests', () => {
-    it(`POST ${endpointUrl}`, async () => {
-      const response = await request(app)
-        .post(endpointUrl)
-        .send(newTodo);
-  
-      expect(response.statusCode).toBe(201);
-      expect(response.body.title).toBe(newTodo.title);
-      expect(response.body.done).toBe(newTodo.done);
-      newTodoId = response.body._id;
-    });
-  
-    it(`should return error 500 on malformed data with post ${endpointUrl}`, async () => {
-      const response = await request(app)
-        .post(endpointUrl)
-        .send({ title: "Missing done property" });
-  
-      expect(response.statusCode).toBe(500);
-      expect(response.body).toStrictEqual({
-        message: 
-          "Todo validation failed: done: Path `done` is required."
-      });
-    });
-  }); 
 
   describe('PUT Intergration Tests', () => {
     it(`PUT ${endpointUrl}`, async () => {

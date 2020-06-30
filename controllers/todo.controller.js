@@ -60,3 +60,7 @@ exports.deleteTodo = async (req, res, next) => {
   }
 
 }
+
+exports.clearTodoDatabase = () => {
+  
+}
