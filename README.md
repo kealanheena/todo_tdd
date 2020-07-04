@@ -50,7 +50,13 @@ $ git clone https://github.com/kealanheena/todo_tdd
 $ cd todo_tdd
 ```
 
-#### To Start
+### To Start
+
+you will need to set up a mongo data base called todos, this can be done by opening mongo in the terminal and then using the command:
+
+```
+use todos
+```
 
 Run
 
