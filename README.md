@@ -93,6 +93,10 @@ $ npm test
 
 ## Tests 
 
+<p align="center">
+  <img src="./img/tests.png">
+</p>
+
 ### Unit Tests
 
 - #deleteTodo
