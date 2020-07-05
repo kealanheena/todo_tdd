@@ -1,6 +1,6 @@
 # Todo TDD
 
-This is a Todo API to help me practice TDD using Jest.
+This is a Todo API to help me practice TDD using Jest. You can create, view, update, and delete a Todo.
 
 ## User Stories
 
